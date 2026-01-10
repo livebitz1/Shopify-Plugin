@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { insertJob, updateJobStatus } from '../lib/db';
 import { v4 as uuidv4 } from 'uuid';
 import { createPresign } from '../lib/s3';
+import fetch from 'node-fetch';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).end();
@@ -24,8 +25,8 @@ async function handleBanana(jobId: string, userImageUrl: string, productImage: s
       input: { user_image: userImageUrl, product_image: productImage }
     })
   });
-  const j = await resp.json();
-  const resultUrl = j.result_url || j.output?.[0]?.url || null;
+  const j: any = await resp.json();
+  const resultUrl = j.result_url || (j.output && j.output[0] && j.output[0].url) || null;
   if (!resultUrl) {
     await updateJobStatus(jobId, { status: 'error', error: j });
     return;
