@@ -1,0 +1,29 @@
+{
+  "name": "nanao-tryon-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc",
+    "start": "vercel start",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "db": "^6.0.3",
+    "form-data": "^4.0.0",
+    "formidable": "^3.0.0",
+    "generate": "^0.14.0",
+    "node-fetch": "^2.6.7",
+    "npx": "^10.2.2",
+    "push": "^0.1.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "prisma": "^5.22.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Upload {
+  id        Int    @id @default(autoincrement())
+  key       String @unique
+  shopToken String
+  status    String
+  createdAt DateTime @default(now())
+}
+
+model Job {
+  id             String   @id @default(dbgenerated("gen_random_uuid()"))
+  shopToken      String
+  userImageUrl   String
+  productImageUrl String
+  runId          String?
+  status         String
+  finalUrl       String?
+  error          Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime?
+}
