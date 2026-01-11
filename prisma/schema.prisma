@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("SUPABASE_DB_URL")
 }
 
 model Upload {
@@ -26,4 +26,11 @@ model Job {
   error          Json?
   createdAt      DateTime @default(now())
   updatedAt      DateTime?
+}
+
+model Shop {
+  id         Int     @id @default(autoincrement())
+  domain     String  @unique
+  tokenHash  String
+  createdAt  DateTime @default(now())
 }

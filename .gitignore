@@ -42,3 +42,4 @@ coverage/
 
 # Ignore local config files
 /.env
+.vercel
